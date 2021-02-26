@@ -1,0 +1,16 @@
+FROM bitnami/spark:3.7-debian-10 AS PySparkStage
+LABEL maintainer "Bitnami <containers@bitnami.com>"
+
+RUN chown -R 1000:1000 /opt/
+# RUN chown -R 1000:1000 /.local
+
+RUN pip install ipykernel==5.3.0 notebook==6.2.0 && python -m ipykernel install --name pyspark
+RUN pip install findspark==1.4.2
+
+RUN mkdir -p /.jupyter/nbconfig
+COPY notebook.json /.jupyter/nbconfig/
+
+# USER 1000 # [ss] 27/02/2021. Note: all files appear as root when mounting volumes of Windows file system
+ENTRYPOINT []
+WORKDIR /home/ss/work/NPD_flightAnalytics/src
+CMD ["/opt/bitnami/python/bin/jupyter", "notebook", "--allow-root", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.token=remoteLover"]

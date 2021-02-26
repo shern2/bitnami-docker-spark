@@ -1,0 +1,15 @@
+{
+  "Notebook": {
+    "Header": false,
+    "Toolbar": false
+  },
+  "keys": {
+    "command": {
+      "bind": {
+        "ctrl-shift-up": "jupyter-notebook:move-cell-up",
+        "ctrl-shift-down": "jupyter-notebook:move-cell-down",
+        "ctrl-shift-c": "jupyter-notebook:clear-cell-output"
+      }
+    }
+  }
+}
